@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="bg">#F4F4F4</color>
+    <color name="bg">#2B2B2B</color>
     <color name="orange_accent">#EE7A44</color>
-    <color name="dark_blue">#042A2B</color>
-    <color name="textcolor_dark">#042A2B</color>
-    <color name="textcolor_light">#F4F4F4</color>
-    <color name="grey_hint">#7C8F8F</color>
+    <color name="dark_blue">#EF7B45</color>
+    <color name="grey_hint">#B2BCBC</color>
     <color name="orange_link">#D84727</color>
     <color name="green">#40CE3E</color>
     <color name="blur">#0D99FF</color>
     <color name="cyan">#5EB1BF</color>
+    <color name="textcolor_dark">#F4F4F4</color>
+    <color name="textcolor_light">#F4F4F4</color>
+
+
 
 </resources>
