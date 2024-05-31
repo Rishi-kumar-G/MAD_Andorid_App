@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/homeFragment" android:icon="@drawable/bg_button"
+        android:title="Home"/>
+
+    <item android:id="@+id/addHomeWorkFragment" android:icon="@drawable/bg_button"
+        android:title="Homework"/>
+
+    <item android:id="@+id/notificationFragment" android:icon="@drawable/bg_button"
+        android:title="Notification"/>
+
+    <item android:id="@+id/studentsFragment" android:icon="@drawable/bg_button"
+        android:title="Students"/>
+
+    <item android:id="@+id/chatsFragment" android:icon="@drawable/bg_button"
+        android:title="Chats"/>
+
+
+
+</menu>

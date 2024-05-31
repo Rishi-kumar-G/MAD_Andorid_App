@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "206994955261",
+    "project_id": "madschool-7e034",
+    "storage_bucket": "madschool-7e034.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:206994955261:android:c225f46a85e6939e4f1794",
+        "android_client_info": {
+          "package_name": "com.example.mad_admin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAW7eUIeoYaGh1-JYjmmW9gjVbj6DZqDdk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
