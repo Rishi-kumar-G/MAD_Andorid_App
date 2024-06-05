@@ -2,6 +2,9 @@
 <resources>
     <color name="bg">#2B2B2B</color>
     <color name="orange_accent">#EE7A44</color>
+    <color name="bg_dark">#151515</color>
+    <color name="rv_bg">#B2BCBC</color>
+
     <color name="dark_blue">#EF7B45</color>
     <color name="grey_hint">#B2BCBC</color>
     <color name="orange_link">#D84727</color>

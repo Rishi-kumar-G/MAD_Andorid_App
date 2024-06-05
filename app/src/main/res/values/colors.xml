@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="bg">#F4F4F4</color>
+    <color name="bg_dark">#ADADAD</color>
     <color name="orange_accent">#EE7A44</color>
     <color name="dark_blue">#042A2B</color>
     <color name="textcolor_dark">#042A2B</color>
+    <color name="rv_bg">#042A2B</color>
     <color name="textcolor_light">#F4F4F4</color>
     <color name="grey_hint">#7C8F8F</color>
     <color name="orange_link">#D84727</color>

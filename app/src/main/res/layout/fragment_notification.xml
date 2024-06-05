@@ -1,14 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg"
     tools:context=".NotificationFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:textColorHint="@color/dark_blue"
+                    app:boxCornerRadiusBottomEnd="@dimen/cornorRadius"
+                    app:boxCornerRadiusBottomStart="@dimen/cornorRadius"
+                    app:boxCornerRadiusTopEnd="@dimen/cornorRadius"
+                    app:boxCornerRadiusTopStart="@dimen/cornorRadius"
+                    app:boxStrokeColor="@color/dark_blue"
+                    app:hintTextAppearance="@style/TextAppearance.AppCompat.Medium"
+                    app:hintTextColor="@color/grey_hint">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/tv_noti_class"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:completionThreshold="0"
+
+                        android:hint="Class"
+                        android:padding="15dp"
+                        android:singleLine="true"
+                        android:textSize="20sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:textColorHint="@color/dark_blue"
+                    app:boxCornerRadiusBottomEnd="@dimen/cornorRadius"
+                    app:boxCornerRadiusBottomStart="@dimen/cornorRadius"
+                    app:boxCornerRadiusTopEnd="@dimen/cornorRadius"
+                    app:boxCornerRadiusTopStart="@dimen/cornorRadius"
+                    app:boxStrokeColor="@color/dark_blue"
+                    app:hintTextAppearance="@style/TextAppearance.AppCompat.Medium"
+                    app:hintTextColor="@color/grey_hint">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/tv_noti_section"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:completionThreshold="0"
+
+                        android:hint="Section"
+                        android:padding="15dp"
+                        android:singleLine="true"
+                        android:textSize="20sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+
+                    android:textColorHint="@color/dark_blue"
+                    app:boxCornerRadiusBottomEnd="@dimen/cornorRadius"
+                    app:boxCornerRadiusBottomStart="@dimen/cornorRadius"
+                    app:boxCornerRadiusTopEnd="@dimen/cornorRadius"
+                    app:boxCornerRadiusTopStart="@dimen/cornorRadius"
+                    app:boxStrokeColor="@color/dark_blue"
+                    app:hintTextAppearance="@style/TextAppearance.AppCompat.Medium"
+                    app:hintTextColor="@color/grey_hint">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/tv_noti_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:completionThreshold="0"
+                        android:hint="Title"
+                        android:padding="15dp"
+                        android:textSize="20sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+
+                    android:textColorHint="@color/dark_blue"
+                    app:boxCornerRadiusBottomEnd="@dimen/cornorRadius"
+                    app:boxCornerRadiusBottomStart="@dimen/cornorRadius"
+                    app:boxCornerRadiusTopEnd="@dimen/cornorRadius"
+                    app:boxCornerRadiusTopStart="@dimen/cornorRadius"
+
+                    app:boxStrokeColor="@color/dark_blue"
+                    app:hintTextAppearance="@style/TextAppearance.AppCompat.Medium"
+                    app:hintTextColor="@color/grey_hint">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/tv_noti_desc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:completionThreshold="0"
+                        android:gravity="top"
+                        android:hint="Description"
+                        android:minHeight="100dp"
+                        android:padding="15dp"
+                        android:textSize="20sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_noti_push"
+                    style="@style/btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="30dp"
+                    android:text="Push Notification"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/linearLayout3"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 </FrameLayout>

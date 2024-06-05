@@ -1,6 +1,7 @@
 package com.example.mad_admin.viewmodel
 
 import android.content.Context
+import android.text.style.AlignmentSpan.Standard
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.mad_admin.Utils
@@ -23,6 +24,9 @@ class AuthViewModal : ViewModel() {
     val _isLoggedIn = MutableStateFlow<Boolean?>(false)
     val isLoggedIn = _isLoggedIn
 
+    val _isLoggedFailed = MutableStateFlow<Boolean?>(false)
+    val isLoggedFailed = _isLoggedFailed
+
     val _isEmailSent = MutableStateFlow<Boolean?>(false)
     val isEmailSent = _isEmailSent
 
@@ -42,17 +46,21 @@ class AuthViewModal : ViewModel() {
         return firebaseStoreInstance
     }
 
-    fun registerUser(context: Context,email:String,password:String,name:String,phone:String){
+    fun registerUser(context: Context,email:String,password:String,name:String,phone:String,standard: String,section:String){
         Utils.showProgress(context,"Creating Account...")
         getAuthInstance().createUserWithEmailAndPassword(email,password).addOnSuccessListener {
-            val userModel = Users(uid=getUserId(),name=name,phone=phone,email=email)
+            val userModel = Users(uid=getUserId(),name=name,phone=phone,email=email,standard=standard, password = password,section=section)
 
             getFireStoreInstance().collection(Constants.CollectionAdminUser).document(userModel.uid).set(userModel).addOnSuccessListener{
                 Utils.hideProgressDialog()
+                Utils.putUser(context,userModel)
                 _isLoggedIn.value = true
 
             }
 
+        }.addOnFailureListener{
+            Utils.hideProgressDialog()
+            Utils.showToast(context,it.message.toString())
         }
     }
 
@@ -82,6 +90,10 @@ class AuthViewModal : ViewModel() {
                     Utils.showToast(context,"Error Sending Email, Please Retry...")
 
                 }
+            }.addOnFailureListener{
+                Utils.hideProgressDialog()
+                Utils.showToast(context,it.message.toString())
+
             }
     }
 
@@ -96,6 +108,8 @@ class AuthViewModal : ViewModel() {
         }
         else return false
     }
+
+
 
 
 

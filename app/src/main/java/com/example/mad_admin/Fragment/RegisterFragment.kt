@@ -13,6 +13,7 @@ import com.example.mad_admin.Activity.HomeActivity
 import com.example.mad_admin.R
 import com.example.mad_admin.Utils
 import com.example.mad_admin.databinding.FragmentRegisterBinding
+import com.example.mad_admin.models.Constants
 import com.example.mad_admin.viewmodel.AuthViewModal
 import kotlinx.coroutines.launch
 
@@ -37,7 +38,7 @@ class RegisterFragment : Fragment() {
             else if (Utils.checkEmpty(binding.tvEmailRegister)) binding.tvEmailRegister.setError("Enter Email")
             else if (Utils.checkEmpty(binding.tvPasswordRegister)) binding.tvPasswordRegister.setError("Enter Password")
             else if (Utils.checkEmpty(binding.tvCnfPasswordRegister)) binding.tvCnfPasswordRegister.setError("Enter Confirm Password")
-            else if (Utils.isValidEmail(binding.tvEmailRegister.text.toString())) binding.tvEmailRegister.setError("Enter Valid Email")
+            else if (binding.tvPasswordRegister.text.toString() != binding.tvCnfPasswordRegister.text.toString()) binding.tvCnfPasswordRegister.setError("Confirm Password Not Matching")
             else {
 
 
@@ -46,10 +47,19 @@ class RegisterFragment : Fragment() {
                     binding.tvEmailRegister.text.toString(),
                     binding.tvPasswordRegister.text.toString(),
                     binding.tvNameRegister.text.toString(),
-                    binding.tvPhoneRegister.text.toString()
+                    binding.tvPhoneRegister.text.toString(),
+                    binding.tvEmailStandard.text.toString(),
+                    binding.tvRegisterSection.text.toString()
+
+
                 )
             }
         }
+
+        Utils.setListAdapter(requireContext(),Constants.standards,binding.tvEmailStandard)
+        Utils.setListAdapter(requireContext(),Constants.sections,binding.tvRegisterSection)
+
+
 
         viewModel.apply {
             lifecycleScope.launch {

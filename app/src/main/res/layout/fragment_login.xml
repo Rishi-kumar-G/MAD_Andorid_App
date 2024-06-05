@@ -25,7 +25,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="100dp"
                 android:text="Login"
-                android:textColor="@color/textcolor_dark"
+                android:textColor="@color/orange_accent"
 
                 android:textSize="54sp"
                 android:textStyle="bold"

@@ -96,6 +96,7 @@
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="phone"
                     android:hint="Phone Number" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -120,7 +121,56 @@
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+
                     android:hint="Email" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+
+                android:layout_marginTop="5dp"
+                android:textColorHint="@color/dark_blue"
+                app:boxCornerRadiusBottomEnd="@dimen/cornorRadius"
+                app:boxCornerRadiusBottomStart="@dimen/cornorRadius"
+                app:boxCornerRadiusTopEnd="@dimen/cornorRadius"
+                app:boxCornerRadiusTopStart="@dimen/cornorRadius"
+                app:boxStrokeColor="@color/dark_blue"
+                app:hintTextAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:hintTextColor="@color/grey_hint">
+
+                <AutoCompleteTextView
+                    android:id="@+id/tv_email_standard"
+                    android:padding="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Class" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+
+                android:layout_marginTop="5dp"
+                android:textColorHint="@color/dark_blue"
+                app:boxCornerRadiusBottomEnd="@dimen/cornorRadius"
+                app:boxCornerRadiusBottomStart="@dimen/cornorRadius"
+                app:boxCornerRadiusTopEnd="@dimen/cornorRadius"
+                app:boxCornerRadiusTopStart="@dimen/cornorRadius"
+                app:boxStrokeColor="@color/dark_blue"
+                app:hintTextAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:hintTextColor="@color/grey_hint">
+
+                <AutoCompleteTextView
+                    android:id="@+id/tv_register_section"
+                    android:padding="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Seciton" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout

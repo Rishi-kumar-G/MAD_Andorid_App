@@ -36,6 +36,8 @@ android {
         jvmTarget = "1.8"
     }
 
+
+
     buildFeatures {
         viewBinding=true
     }
@@ -44,6 +46,8 @@ android {
 
 dependencies {
 
+//    implementation (libs.firebase.ui.firestore)
+    implementation("com.squareup.picasso:picasso:2.8")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(platform(libs.firebase.bom))
@@ -55,7 +59,10 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.firebase.auth)
     implementation(libs.firebase.firestore)
+    implementation(libs.firebase.storage.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+
 }

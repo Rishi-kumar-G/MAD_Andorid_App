@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/homeFragment" android:icon="@drawable/bg_button"
+    <item android:id="@+id/homeFragment" android:icon="@drawable/homeicon"
         android:title="Home"/>
 
-    <item android:id="@+id/addHomeWorkFragment" android:icon="@drawable/bg_button"
+    <item android:id="@+id/addHomeWorkFragment" android:icon="@drawable/addicon"
         android:title="Homework"/>
 
-    <item android:id="@+id/notificationFragment" android:icon="@drawable/bg_button"
+    <item android:id="@+id/notificationFragment" android:icon="@drawable/notificationicon"
         android:title="Notification"/>
 
-    <item android:id="@+id/studentsFragment" android:icon="@drawable/bg_button"
+    <item android:id="@+id/studentsFragment" android:icon="@drawable/profileoicon"
         android:title="Students"/>
 
-    <item android:id="@+id/chatsFragment" android:icon="@drawable/bg_button"
+    <item android:id="@+id/chatsFragment" android:icon="@drawable/chaticon"
         android:title="Chats"/>
 
 
