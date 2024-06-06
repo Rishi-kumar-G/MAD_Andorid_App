@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout6"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment.HW_ViewFragment">
+
+    <ImageView
+        android:id="@+id/btn_hw_back"
+        android:layout_width="40dp"
+        android:layout_height="50dp"
+        android:rotation="180"
+        android:src="@drawable/baseline_navigate_next_24"
+        app:tint="@color/grey_hint"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vp_homework_viewpager"
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_hw_back" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="@dimen/cornorRadius"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vp_homework_viewpager">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tv_hw_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="50dp"
+                        android:layout_marginEnd="20dp"
+                        android:text="Complete Ch 9"
+                        android:textColor="@color/blur"
+                        android:textSize="24sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_hw_desc"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="Complete and submit  all exercises of chapter 6 (algebra) in maths."
+                        android:textColor="@color/grey_hint"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="@+id/tv_hw_title"
+                        app:layout_constraintStart_toStartOf="@+id/tv_hw_title"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_hw_title" />
+
+                    <TextView
+                        android:id="@+id/tv_hw_date"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="12 Mon"
+                        android:textColor="@color/orange_accent"
+                        app:layout_constraintEnd_toEndOf="@+id/tv_hw_desc"
+                        app:layout_constraintStart_toStartOf="@+id/tv_hw_desc"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_hw_desc" />
+
+                    <TextView
+                        android:id="@+id/tv_hw_auther"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="by: Rishi"
+                        android:textAlignment="viewEnd"
+                        android:textColor="@color/textcolor_dark"
+                        app:layout_constraintEnd_toEndOf="@+id/tv_hw_date"
+                        app:layout_constraintStart_toStartOf="@+id/tv_hw_date"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_hw_date" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </ScrollView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_hw_delete"
+                    style="@style/btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_button"
+                    android:backgroundTint="#FF5722"
+                    android:text="Delete"
+                    android:textColor="@color/textcolor_dark" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_hw_edit"
+                    style="@style/btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_button"
+                    android:backgroundTint="#7DD27B"
+                    android:text="Edit"
+                    android:textColor="@color/textcolor_dark" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tv_hw_subject"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:gravity="center"
+        android:text="Maths"
+        android:textColor="@color/textcolor_dark"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_hw_back"
+        app:layout_constraintStart_toEndOf="@+id/btn_hw_back"
+        app:layout_constraintTop_toTopOf="@+id/btn_hw_back" />
+</androidx.constraintlayout.widget.ConstraintLayout>

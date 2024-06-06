@@ -3,7 +3,6 @@ package com.example.mad_admin.Fragment
 import HomeWorkAdapter
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,18 +11,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.mad_admin.Activity.MainActivity
 import com.example.mad_admin.R
 import com.example.mad_admin.SettingsFragment
 import com.example.mad_admin.Utils
 import com.example.mad_admin.databinding.FragmentHomeBinding
 import com.example.mad_admin.models.Constants
 import com.example.mad_admin.models.HomeWork
-import com.example.mad_admin.viewmodel.AuthViewModal
 import com.example.mad_admin.viewmodel.MainViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.util.Calendar
@@ -58,7 +55,10 @@ class HomeFragment : Fragment() {
 
         adapter= HomeWorkAdapter()
         adapter.differ.submitList(_HomeWorkData.value)
+        adapter.onItemClick ={ item, pos->
 
+            onHomeWorkClick(item)
+        }
         binding.rvMainHomeWork.adapter = adapter
 
 
@@ -66,7 +66,7 @@ class HomeFragment : Fragment() {
         binding.tvHomeClass.setText(Constants.standards[0])
         if (Utils.getUser(requireContext()).standard != null) {
             binding.tvHomeClass.setText(Utils.getUser(requireContext()).standard)
-
+            _standard.value = Utils.getUser(requireContext()).standard.toString()
 
         }
         Utils.setListAdapter(requireContext(),Constants.sections,binding.tvHomeSection)
@@ -137,6 +137,8 @@ class HomeFragment : Fragment() {
 
         setHomeWork(_standard.value,_section.value,_date.value)
 
+
+
         return binding.root
     }
 
@@ -167,6 +169,20 @@ class HomeFragment : Fragment() {
             }
         }
 
+
+
+    }
+
+    fun onHomeWorkClick(homeWork: HomeWork){
+        mainViewmodel.setHomeWork(homeWork)
+        val hwHW_ViewFragment = HW_ViewFragment()
+        val bundle = Bundle()
+        bundle.putString("title",homeWork.title)
+        bundle.putParcelable("homeWork",homeWork)
+        hwHW_ViewFragment.arguments = bundle
+        Log.d("rishi",homeWork.toString())
+        loadFragment(hwHW_ViewFragment)
+//        findNavController().navigate(R.id.action_homeFragment_to_HW_ViewFragment2,bundle)
 
 
     }

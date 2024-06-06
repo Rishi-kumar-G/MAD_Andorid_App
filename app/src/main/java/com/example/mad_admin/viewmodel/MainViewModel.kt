@@ -1,8 +1,6 @@
 package com.example.mad_admin.viewmodel
 
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
@@ -11,19 +9,15 @@ import com.example.mad_admin.Utils
 import com.example.mad_admin.models.Constants
 import com.example.mad_admin.models.HomeWork
 import com.example.mad_admin.models.Notification
-import com.google.android.gms.tasks.Task
-import com.google.android.gms.tasks.Tasks
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.toObject
-import com.google.firebase.firestore.util.Util
 import com.google.firebase.storage.storage
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.callbackFlow
-import java.util.UUID
 
 class MainViewModel : ViewModel() {
 
@@ -34,7 +28,9 @@ class MainViewModel : ViewModel() {
     val _imageUploded = MutableStateFlow<Boolean>(false)
     val _homeWorkUploded = MutableStateFlow<Boolean>(false)
     val _NotificationUploded = MutableStateFlow<Boolean>(false)
-    val _homeWorkData = MutableStateFlow<ArrayList<HomeWork>>(ArrayList())
+    val _homeWorkData = HomeWork()
+
+    var _homeWork : HomeWork = HomeWork()
 
     val Notificationuploded = _NotificationUploded
     val imageUriData = _imageUriData.value
@@ -61,6 +57,20 @@ class MainViewModel : ViewModel() {
 
         }
         return firebaseStoreInstance
+    }
+
+    fun setHomeWork(homeWork: HomeWork){
+
+        Log.d("rishi2" , "setHomeWork: "+homeWork.toString())
+        _homeWork=homeWork
+        Log.d("rishi2" , "setHomeWork _ : "+_homeWork.toString())
+
+    }
+
+    fun getHomeWork(): HomeWork {
+        Log.d("rishi2" , "getHomeWork: "+_homeWork.toString())
+
+        return _homeWork
     }
 
     fun uploadImages(context: Context,imageUris: List<Uri>, homeWork: HomeWork) {
@@ -128,41 +138,7 @@ class MainViewModel : ViewModel() {
         }
     }
 
-//    fun fetchHomeWork(standard: String,section:String,date: String): ArrayList<HomeWork> {
-//
-//        val dataList = ArrayList<HomeWork>()
-//        Log.d("rishi","$standard$section $date")
-//        Firebase.firestore.collection("$standard$section")
-//            .whereEqualTo("date", date)
-//            .get()
-//            .addOnSuccessListener { result ->
-//                for (document in result) {
-//                    val data = HomeWork(uid=document.getString("uid")!!,
-//                        standard=document.getString("standard"),
-//                        title = document.getString("title"),
-//                        section = document.getString("section"),
-//                        date = document.getString("date"),
-//                        urls = document.get("urls") as ArrayList<String>,
-//                        auther  = document.getString("auther"),
-//                        subject = document.getString("subject")
-//                    )
-//                    dataList.add(data)
-//
-//                }
-//
-//
-//            }
-//            .addOnFailureListener { exception ->
-//                // Handle data fetching failure
-//                Log.w("Firestore", "Error fetching data", exception)
-//            }
-//
-//        return dataList
-//
-//
-//
-//
-//    }
+
 
     fun fetchData(standard: String,section:String,date: String):Flow<ArrayList<HomeWork>> = callbackFlow {
         val db = Firebase.firestore.collection("$standard$section")
@@ -187,6 +163,97 @@ class MainViewModel : ViewModel() {
             Log.w("Firestore", "Error fetching data", exception)
         }
         awaitClose()
+
+
+
+
+    }
+
+    fun updateHomWork(context: Context, homeWork: HomeWork, old: String) {
+        Utils.showProgress(context, "Updating HomeWork...")
+
+
+
+
+        val firestore = Firebase.firestore
+        val homeworkRef = firestore.collection(homeWork.standard.toString()+homeWork.section.toString()).document(homeWork.uid)// Replace with your collection name
+
+        firestore.collection(old).document(homeWork.uid).delete().addOnSuccessListener{
+            homeworkRef.set(homeWork).addOnSuccessListener{
+
+                Utils.hideProgressDialog()
+                _homeWorkUploded.value = true
+
+            }.addOnFailureListener{
+                Utils.hideProgressDialog()
+                Log.d("rishi2" , it.toString())
+                Utils.showToast(context,it.toString())
+            }
+        }
+
+
+
+    }
+
+    fun deleteHomeWork(context: Context, homeWork: HomeWork) {
+        Utils.showProgress(context, "Deleting HomeWork...")
+        val firestore = FirebaseFirestore.getInstance()
+        val homeworkRef = firestore.collection(homeWork.standard!!).document(homeWork.uid)
+
+
+        homeworkRef.delete().addOnSuccessListener {
+            Utils.hideProgressDialog()
+            _homeWorkUploded.value = true
+        }
+            .addOnFailureListener{
+                Utils.hideProgressDialog()
+                Utils.showToast(context,it.toString())
+            }
+    }
+
+    fun DeletehomeWorkWithImages(context: Context, homeWork: HomeWork){
+        Utils.showProgress(context, "Deleting HomeWork...")
+        val firestore = FirebaseFirestore.getInstance()
+
+        val homeworkRef = firestore.collection("${homeWork.standard!!}${homeWork.section!!}")
+            .document(homeWork.uid)// Replace with your collection name
+        if (homeWork.urls!=null ) {
+
+            for (i in 0..<homeWork.urls!!.size){
+                val storage = Firebase.storage.getReferenceFromUrl(homeWork.urls!![i])
+                storage.delete().addOnSuccessListener {
+
+                        if (i >= homeWork.urls!!.size - 1) {
+                            homeworkRef.delete().addOnSuccessListener {
+                                Utils.hideProgressDialog()
+                                _homeWorkUploded.value = true
+                            }
+                                .addOnFailureListener {
+                                    Utils.hideProgressDialog()
+                                    Utils.showToast(context, it.toString())
+                                }
+                        }
+
+
+                    }.addOnFailureListener {
+                        Utils.hideProgressDialog()
+                        Log.d("rishi", it.toString())
+                        Utils.showToast(context, it.toString())
+                    }
+
+                }
+        }
+        else
+        {
+            homeworkRef.delete().addOnSuccessListener {
+                Utils.hideProgressDialog()
+                _homeWorkUploded.value = true
+            }
+                .addOnFailureListener{
+                    Utils.hideProgressDialog()
+                    Utils.showToast(context,it.toString())
+                }
+        }
 
 
 

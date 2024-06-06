@@ -1,20 +1,14 @@
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mad_admin.R
 import com.example.mad_admin.databinding.ViewHomeworkBinding
 import com.example.mad_admin.models.HomeWork
-import com.google.firebase.firestore.Query
 import com.squareup.picasso.Picasso
 
-class HomeWorkAdapter():
+class HomeWorkAdapter() :
     RecyclerView.Adapter<HomeWorkAdapter.viewHolder>() {
 
 
@@ -28,7 +22,6 @@ class HomeWorkAdapter():
         override fun areContentsTheSame(oldItem: HomeWork, newItem: HomeWork): Boolean {
             return oldItem == newItem
         }
-
     }
 
     val differ = AsyncListDiffer(this,diff)
@@ -54,11 +47,18 @@ class HomeWorkAdapter():
             tvVhDate.text = homeWork.date
 
         }
+        holder.binding.root.setOnClickListener{
+            onItemClick
+            ?.invoke(homeWork,position)
+        }
+
+
 
         Picasso.get().load(homeWork.urls?.get(0)).placeholder(R.drawable.knowledge).into(holder.binding.imgVhHwImage)
 
-
     }
+
+    var onItemClick: ((HomeWork, Int) -> Unit)? = null
 
     class viewHolder(val binding: ViewHomeworkBinding): RecyclerView.ViewHolder(binding.root)
 

@@ -9,7 +9,14 @@
         android:id="@+id/homeFragment"
         android:name="com.example.mad_admin.Fragment.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_HW_ViewFragment"
+            app:destination="@id/HW_ViewFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_HW_ViewFragment2"
+            app:destination="@id/HW_ViewFragment" />
+    </fragment>
     <fragment
         android:id="@+id/addHomeWorkFragment"
         android:name="com.example.mad_admin.Fragment.AddHomeWorkFragment"
@@ -35,4 +42,18 @@
         android:name="com.example.mad_admin.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/HW_ViewFragment"
+        android:name="com.example.mad_admin.Fragment.HW_ViewFragment"
+        android:label="fragment_h_w__view"
+        tools:layout="@layout/fragment_h_w__view" >
+        <action
+            android:id="@+id/action_HW_ViewFragment_to_editFragment"
+            app:destination="@id/editFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editFragment"
+        android:name="com.example.mad_admin.EditFragment"
+        android:label="fragment_edit"
+        tools:layout="@layout/fragment_edit" />
 </navigation>
