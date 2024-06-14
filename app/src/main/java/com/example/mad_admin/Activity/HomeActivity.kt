@@ -13,7 +13,7 @@ import com.example.mad_admin.ChatsFragment
 import com.example.mad_admin.Fragment.HomeFragment
 import com.example.mad_admin.NotificationFragment
 import com.example.mad_admin.R
-import com.example.mad_admin.StudentsFragment
+import com.example.mad_admin.Fragment.StudentsFragment
 import com.example.mad_admin.viewmodel.MainViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 

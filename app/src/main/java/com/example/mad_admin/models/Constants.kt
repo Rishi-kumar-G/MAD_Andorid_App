@@ -2,7 +2,9 @@ package com.example.mad_admin.models
 
 object Constants {
 
+    val CollectionAttendence = "attendence"
     val CollectionAdminUser = "adminUser"
+    val CollectionStudents = "student"
     val CollectionHomeWork = "Homework"
     val CollectionNotification = "Notifications"
     val RequestCodeHomeWork = 100

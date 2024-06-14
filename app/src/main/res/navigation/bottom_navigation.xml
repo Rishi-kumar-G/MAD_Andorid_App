@@ -29,7 +29,7 @@
         tools:layout="@layout/fragment_notification" />
     <fragment
         android:id="@+id/studentsFragment"
-        android:name="com.example.mad_admin.StudentsFragment"
+        android:name="com.example.mad_admin.Fragment.StudentsFragment"
         android:label="fragment_students"
         tools:layout="@layout/fragment_students" />
     <fragment

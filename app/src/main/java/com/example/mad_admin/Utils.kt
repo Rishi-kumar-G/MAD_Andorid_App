@@ -143,4 +143,22 @@ object Utils {
 
     }
 
+    fun getCurrentMonth(): String {
+        val current = LocalDateTime.now()
+        val formatter = DateTimeFormatter.ofPattern("MMMM")  // Change format as needed
+        return current.format(formatter)
+    }
+
+    fun getCurrentDay(): String {
+        val current = LocalDateTime.now()
+        val formatter = DateTimeFormatter.ofPattern("dd")  // Change format as needed
+        return current.format(formatter)
+    }
+
+    fun getCurrentYear(): String {
+        val current = LocalDateTime.now()
+        val formatter = DateTimeFormatter.ofPattern("YY")  // Change format as needed
+        return current.format(formatter)
+    }
+
 }

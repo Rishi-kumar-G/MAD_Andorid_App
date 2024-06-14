@@ -1,14 +1,20 @@
 package com.example.mad_admin.viewmodel
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.drawable.Drawable.ConstantState
 import android.net.Uri
 import android.util.Log
+import android.widget.TextView
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.mad_admin.R
 import com.example.mad_admin.Utils
+import com.example.mad_admin.models.Attendence
 import com.example.mad_admin.models.Constants
 import com.example.mad_admin.models.HomeWork
 import com.example.mad_admin.models.Notification
+import com.example.mad_admin.models.Student
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
@@ -169,6 +175,34 @@ class MainViewModel : ViewModel() {
 
     }
 
+    fun fetchStudents(standard: String,section:String):Flow<ArrayList<Student>> = callbackFlow {
+        val db = Firebase.firestore.collection(Constants.CollectionStudents).whereEqualTo("standard",standard).whereEqualTo("section",section)
+
+
+        db.get()
+
+            .addOnSuccessListener { result ->
+                val dataList = ArrayList<Student>()
+                for (documents   in result) {
+                    val hw = documents.toObject<Student>()
+
+                    dataList.add(hw)
+
+                }
+
+                trySend(dataList)
+
+            }.addOnFailureListener { exception ->
+                // Handle data fetching failure
+                Log.w("Firestore", "Error fetching data", exception)
+            }
+        awaitClose()
+
+
+
+
+    }
+
     fun updateHomWork(context: Context, homeWork: HomeWork, old: String) {
         Utils.showProgress(context, "Updating HomeWork...")
 
@@ -256,6 +290,37 @@ class MainViewModel : ViewModel() {
         }
 
 
+
+
+    }
+
+    @SuppressLint("ResourceAsColor")
+    fun uploadAttendence(context: Context, data:ArrayList<Student>) {
+
+        val firestore = FirebaseFirestore.getInstance()
+        Utils.showProgress(context, "Uploading Attendence...")
+        for (s in data){
+
+            val attReffrence = firestore.collection(Constants.CollectionStudents).document(s.uid).collection(Constants.CollectionAttendence).document(Utils.getCurrentDate())// Replace with your collection name
+            val att = Attendence(uid = s.uid,
+                status = s.status,
+                date = Utils.getCurrentDate(),
+                month = Utils.getCurrentMonth(),
+                year = Utils.getCurrentYear(),
+                day = Utils.getCurrentDay())
+            attReffrence.set(att).addOnSuccessListener{
+            firestore.collection(Constants.CollectionStudents).document(s.uid).update("status",s.status)
+
+            }.addOnFailureListener{
+                Utils.showToast(context,it.toString())
+                Utils.hideProgressDialog()
+            }
+
+
+
+        }
+        Utils.showToast(context,"Attendence Uploded")
+        Utils.hideProgressDialog()
 
 
     }

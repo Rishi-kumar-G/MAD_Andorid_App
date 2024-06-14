@@ -182,7 +182,7 @@ class HomeFragment : Fragment() {
         hwHW_ViewFragment.arguments = bundle
         Log.d("rishi",homeWork.toString())
         loadFragment(hwHW_ViewFragment)
-//        findNavController().navigate(R.id.action_homeFragment_to_HW_ViewFragment2,bundle)
+
 
 
     }
