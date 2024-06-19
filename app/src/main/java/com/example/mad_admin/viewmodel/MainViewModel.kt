@@ -11,11 +11,14 @@ import androidx.lifecycle.ViewModel
 import com.example.mad_admin.R
 import com.example.mad_admin.Utils
 import com.example.mad_admin.models.Attendence
+import com.example.mad_admin.models.ChatUser
 import com.example.mad_admin.models.Constants
 import com.example.mad_admin.models.HomeWork
 import com.example.mad_admin.models.Notification
 import com.example.mad_admin.models.Student
+import com.example.mad_admin.models.Users
 import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.toObject
@@ -35,7 +38,8 @@ class MainViewModel : ViewModel() {
     val _homeWorkUploded = MutableStateFlow<Boolean>(false)
     val _NotificationUploded = MutableStateFlow<Boolean>(false)
     val _homeWorkData = HomeWork()
-
+    val _AdminName = MutableStateFlow<String>("")
+    val AdminName = _AdminName.value
     var _homeWork : HomeWork = HomeWork()
 
     val Notificationuploded = _NotificationUploded
@@ -173,6 +177,22 @@ class MainViewModel : ViewModel() {
 
 
 
+    }
+
+    fun fetchUser(uid: String) {
+        FirebaseFirestore.getInstance().collection(Constants.CollectionAdminUser).document(uid).get().addOnSuccessListener {
+            val user = it.toObject<Users>()
+            _AdminName.value = user!!.name.toString()
+
+        }
+    }
+
+    fun fetchStudent(uid: String) {
+        FirebaseFirestore.getInstance().collection(Constants.CollectionStudents).document(uid).get().addOnSuccessListener {
+            val user = it.toObject<Users>()
+            _AdminName.value = user!!.name.toString()
+
+        }
     }
 
     fun fetchStudents(standard: String,section:String):Flow<ArrayList<Student>> = callbackFlow {
@@ -324,6 +344,27 @@ class MainViewModel : ViewModel() {
 
 
     }
+
+    @SuppressLint("SuspiciousIndentation")
+    fun fetchChatList(): Flow<ArrayList<ChatUser>> = callbackFlow {
+        val id = FirebaseAuth.getInstance().currentUser!!.uid.toString()
+        Log.d("rishi",id.toString())
+        val db =getFireStoreInstance().collection(Constants.CollectionAdminUser).document(id).collection(Constants.CollectionMessege)
+
+
+
+        db.get().addOnSuccessListener{
+            var dataList = ArrayList<ChatUser>()
+            dataList = it.toObjects(ChatUser::class.java) as ArrayList<ChatUser>
+            trySend(dataList)
+        }
+
+
+        awaitClose()
+
+
+    }
+
 
 
 

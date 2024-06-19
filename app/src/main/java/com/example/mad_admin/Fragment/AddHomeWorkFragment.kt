@@ -71,7 +71,7 @@ class AddHomeWorkFragment : Fragment() {
                 uid = UUID.randomUUID().toString(),
                 title = binding.tvAddTitle.text.toString(),
                 desc = binding.tvAddDesc.text.toString(),
-                auther = "${user.name} ${user.standard}",
+                auther = user.uid,
                 date = Utils.getCurrentDate(),
                 time = Utils.getCurrentTime(),
                 standard = binding.tvAddClass.text.toString(),

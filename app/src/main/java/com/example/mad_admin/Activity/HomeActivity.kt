@@ -9,9 +9,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.example.mad_admin.Fragment.AddHomeWorkFragment
-import com.example.mad_admin.ChatsFragment
+import com.example.mad_admin.Fragment.ChatsFragment
 import com.example.mad_admin.Fragment.HomeFragment
-import com.example.mad_admin.NotificationFragment
+import com.example.mad_admin.Fragment.NotificationFragment
 import com.example.mad_admin.R
 import com.example.mad_admin.Fragment.StudentsFragment
 import com.example.mad_admin.viewmodel.MainViewModel

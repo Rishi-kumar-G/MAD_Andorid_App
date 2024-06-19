@@ -38,7 +38,13 @@ class HW_ViewFragment : Fragment() {
         binding.tvHwDesc.text = homeWork.desc
         binding.tvHwDate.text = homeWork.date
         binding.tvHwAuther.text = "by:${homeWork.auther}"
-        binding.vpHomeworkViewpager.adapter = ViewPagerOnlineAdapter(requireContext(),homeWork.urls!!)
+            if (homeWork.urls != null) {
+                binding.vpHomeworkViewpager.adapter =
+                    ViewPagerOnlineAdapter(requireContext(), homeWork.urls!!)
+            }else{
+                binding.vpHomeworkViewpager.adapter =
+                    ViewPagerOnlineAdapter(requireContext(), listOf("https://"))
+            }
         }
 
         binding.btnHwBack.setOnClickListener{

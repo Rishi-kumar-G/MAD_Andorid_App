@@ -11,10 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mad_admin.R
-import com.example.mad_admin.SettingsFragment
 import com.example.mad_admin.Utils
 import com.example.mad_admin.databinding.FragmentHomeBinding
 import com.example.mad_admin.models.Constants

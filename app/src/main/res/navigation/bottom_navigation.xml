@@ -24,7 +24,7 @@
         tools:layout="@layout/fragment_add_home_work" />
     <fragment
         android:id="@+id/notificationFragment"
-        android:name="com.example.mad_admin.NotificationFragment"
+        android:name="com.example.mad_admin.Fragment.NotificationFragment"
         android:label="fragment_notification"
         tools:layout="@layout/fragment_notification" />
     <fragment
@@ -34,12 +34,12 @@
         tools:layout="@layout/fragment_students" />
     <fragment
         android:id="@+id/chatsFragment"
-        android:name="com.example.mad_admin.ChatsFragment"
+        android:name="com.example.mad_admin.Fragment.ChatsFragment"
         android:label="fragment_chats"
         tools:layout="@layout/fragment_chats" />
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.mad_admin.SettingsFragment"
+        android:name="com.example.mad_admin.Fragment.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
     <fragment
@@ -56,4 +56,9 @@
         android:name="com.example.mad_admin.EditFragment"
         android:label="fragment_edit"
         tools:layout="@layout/fragment_edit" />
+    <fragment
+        android:id="@+id/chatViewFragment"
+        android:name="com.example.mad_admin.Fragment.ChatViewFragment"
+        android:label="fragment_chat_view"
+        tools:layout="@layout/fragment_chat_view" />
 </navigation>

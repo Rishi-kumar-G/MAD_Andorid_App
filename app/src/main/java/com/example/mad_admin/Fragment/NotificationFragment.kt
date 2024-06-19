@@ -1,4 +1,4 @@
-package com.example.mad_admin
+package com.example.mad_admin.Fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,12 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.example.mad_admin.Utils
 import com.example.mad_admin.databinding.FragmentNotificationBinding
 import com.example.mad_admin.models.Constants
 import com.example.mad_admin.models.Notification
-import com.example.mad_admin.viewmodel.AuthViewModal
 import com.example.mad_admin.viewmodel.MainViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.util.UUID
 
@@ -29,9 +28,9 @@ class NotificationFragment : Fragment() {
 
         binding = FragmentNotificationBinding.inflate(layoutInflater)
 
-        Utils.setListAdapter(requireContext(),Constants.standards,binding.tvNotiClass)
+        Utils.setListAdapter(requireContext(), Constants.standards, binding.tvNotiClass)
 
-        Utils.setListAdapter(requireContext(),Constants.sections,binding.tvNotiSection)
+        Utils.setListAdapter(requireContext(), Constants.sections, binding.tvNotiSection)
 
         binding.btnNotiPush.setOnClickListener{
             val notification = Notification(uid=UUID.randomUUID().toString(),

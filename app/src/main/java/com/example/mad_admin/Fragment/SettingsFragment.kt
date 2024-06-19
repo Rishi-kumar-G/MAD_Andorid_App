@@ -1,4 +1,4 @@
-package com.example.mad_admin
+package com.example.mad_admin.Fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.mad_admin.Activity.MainActivity
+import com.example.mad_admin.Utils
 import com.example.mad_admin.databinding.FragmentSettingsBinding
 import com.example.mad_admin.viewmodel.AuthViewModal
 
