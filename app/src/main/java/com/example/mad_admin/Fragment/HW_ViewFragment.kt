@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.mad_admin.Adapter.ViewPagerOnlineAdapter
 import com.example.mad_admin.EditFragment
@@ -14,6 +15,7 @@ import com.example.mad_admin.R
 import com.example.mad_admin.databinding.FragmentHWViewBinding
 import com.example.mad_admin.models.HomeWork
 import com.example.mad_admin.viewmodel.MainViewModel
+import kotlinx.coroutines.launch
 
 
 class HW_ViewFragment : Fragment() {
@@ -30,6 +32,16 @@ class HW_ViewFragment : Fragment() {
         val homeWork = arguments?.getParcelable<HomeWork>("homeWork")
 
 
+        mainViewModal.apply {
+            lifecycleScope.launch {
+                if (homeWork != null) {
+                    fetchUser(homeWork.auther!!).collect{
+                        binding.tvHwAuther.setText("${it.name} ${it.standard}${it.section}")
+                    }
+                }
+            }
+        }
+
 
         Log.d("rishi2"," 232 "+homeWork.toString())
         if (homeWork != null){
@@ -37,14 +49,14 @@ class HW_ViewFragment : Fragment() {
         binding.tvHwTitle.text = title
         binding.tvHwDesc.text = homeWork.desc
         binding.tvHwDate.text = homeWork.date
-        binding.tvHwAuther.text = "by:${homeWork.auther}"
-            if (homeWork.urls != null) {
-                binding.vpHomeworkViewpager.adapter =
-                    ViewPagerOnlineAdapter(requireContext(), homeWork.urls!!)
-            }else{
-                binding.vpHomeworkViewpager.adapter =
-                    ViewPagerOnlineAdapter(requireContext(), listOf("https://"))
-            }
+
+        if (homeWork.urls != null) {
+            binding.vpHomeworkViewpager.adapter =
+                ViewPagerOnlineAdapter(requireContext(), homeWork.urls!!)
+        }else{
+            binding.vpHomeworkViewpager.adapter =
+                ViewPagerOnlineAdapter(requireContext(), listOf("https://"))
+        }
         }
 
         binding.btnHwBack.setOnClickListener{

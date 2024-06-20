@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.mad_admin.Activity.MainActivity
+import com.example.mad_admin.R
 import com.example.mad_admin.Utils
 import com.example.mad_admin.databinding.FragmentSettingsBinding
 import com.example.mad_admin.viewmodel.AuthViewModal
@@ -42,8 +43,23 @@ class SettingsFragment : Fragment() {
 
         }
 
+        binding.btnUploadResult.setOnClickListener{
+            loadFragment(ResultsFragment())
+        }
+
+        binding.imgSettingBack.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
+
 
         return binding.root
+    }
+
+    private  fun loadFragment(fragment: Fragment){
+        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.container,fragment).addToBackStack("")
+
+        transaction.commit()
     }
 
 

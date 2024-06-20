@@ -69,7 +69,7 @@ class ChatsFragment : Fragment() {
 
 
         ChatsFragment.arguments = args
-        transaction.replace(R.id.container, ChatsFragment)
+        transaction.replace(R.id.container, ChatsFragment).addToBackStack("")
         transaction.commit()
     }
 

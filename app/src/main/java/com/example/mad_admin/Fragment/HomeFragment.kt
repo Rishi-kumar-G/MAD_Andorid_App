@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -86,6 +87,11 @@ class HomeFragment : Fragment() {
 
         }
 
+        binding.tvSearch.addTextChangedListener {
+            val querry = it.toString()
+            filterHomeworkData(querry)
+        }
+
 
 
 
@@ -99,7 +105,7 @@ class HomeFragment : Fragment() {
             val datePickerDialog = DatePickerDialog(requireContext(),
                 { view, year, monthOfYear, dayOfMonth ->
                     // Handle the selected date here
-                    var selectedDate:String
+                    var selectedDate = ""
                     if(monthOfYear+1 <10){
                         selectedDate  = "$year-0${monthOfYear + 1}-$dayOfMonth"
 
@@ -113,8 +119,8 @@ class HomeFragment : Fragment() {
                         selectedDate  = "$year-0${monthOfYear + 1}-0$dayOfMonth"
 
                     }
-                    else {
-                      selectedDate  = "$year-${monthOfYear + 1}-$dayOfMonth"
+                    if(dayOfMonth >= 10 && monthOfYear+1 >=10){
+                        selectedDate  = "$year-${monthOfYear + 1}-$dayOfMonth"
                     }
 
                     _date.value = selectedDate
@@ -142,7 +148,7 @@ class HomeFragment : Fragment() {
 
     private  fun loadFragment(fragment: Fragment){
         val transaction = requireActivity().supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.container,fragment)
+        transaction.replace(R.id.container,fragment).addToBackStack("")
         transaction.commit()
     }
 
@@ -182,6 +188,29 @@ class HomeFragment : Fragment() {
         loadFragment(hwHW_ViewFragment)
 
 
+
+    }
+
+    fun filterHomeworkData(query: String){
+        val lowercaseQuery = query.lowercase()
+        val filteredData = ArrayList<HomeWork>()
+
+        var homeworkData = _HomeWorkData.value
+
+        for (homework in homeworkData) {
+            val lowercaseSubject = homework.subject!!.lowercase()
+            val lowercaseTitle = homework.title!!.lowercase()
+            val lowercaseDesc = homework.desc!!.lowercase()
+
+            if (lowercaseSubject.contains(lowercaseQuery) ||
+                lowercaseTitle.contains(lowercaseQuery) ||
+                lowercaseDesc.contains(lowercaseQuery)) {
+                filteredData.add(homework)
+            }
+        }
+
+        adapter.differ.submitList(filteredData)
+        adapter.notifyDataSetChanged()
 
     }
 

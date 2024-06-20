@@ -67,6 +67,36 @@ class AddHomeWorkFragment : Fragment() {
 
 
         binding.btnAddHomeWork.setOnClickListener{
+
+            if (binding.tvAddTitle.text.toString().isEmpty()){
+                binding.tvAddTitle.error = "Please enter title"
+                return@setOnClickListener
+            }
+
+            if (binding.tvAddDesc.text.toString().isEmpty()){
+                binding.tvAddDesc.error = "Please enter description"
+                return@setOnClickListener
+            }
+
+            if (binding.tvAddClass.text.toString().isEmpty()){
+                binding.tvAddClass.error = "Please enter class"
+                return@setOnClickListener
+            }
+
+            if (binding.tvAddSection.text.toString().isEmpty()){
+                binding.tvAddSection.error = "Please enter section"
+                return@setOnClickListener
+            }
+
+            if (binding.tvAddSubjects.text.toString().isEmpty()){
+                binding.tvAddSubjects.error = "Please enter subject"
+                return@setOnClickListener
+            }
+
+
+
+
+
             val homeWork = HomeWork(
                 uid = UUID.randomUUID().toString(),
                 title = binding.tvAddTitle.text.toString(),

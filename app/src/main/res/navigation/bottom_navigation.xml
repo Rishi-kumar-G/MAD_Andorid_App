@@ -61,4 +61,19 @@
         android:name="com.example.mad_admin.Fragment.ChatViewFragment"
         android:label="fragment_chat_view"
         tools:layout="@layout/fragment_chat_view" />
+    <fragment
+        android:id="@+id/resultsFragment"
+        android:name="com.example.mad_admin.Fragment.ResultsFragment"
+        android:label="fragment_results"
+        tools:layout="@layout/fragment_results" />
+    <fragment
+        android:id="@+id/resultStudentFragment"
+        android:name="com.example.mad_admin.Fragment.ResultStudentFragment"
+        android:label="fragment_result_student"
+        tools:layout="@layout/fragment_result_student" />
+    <fragment
+        android:id="@+id/addResultFragment"
+        android:name="com.example.mad_admin.AddResultFragment"
+        android:label="fragment_add_result"
+        tools:layout="@layout/fragment_add_result" />
 </navigation>

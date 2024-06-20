@@ -25,6 +25,7 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Calendar
+import java.util.UUID
 import java.util.regex.Pattern
 
 object Utils {
@@ -91,6 +92,11 @@ object Utils {
         }
 
     }
+    fun generateUniqueTimeBasedId(): String {
+        val currentTime = System.currentTimeMillis()
+        return "$currentTime"
+    }
+
 
     fun openMultiImagePicker(activity: Activity, requestCode: Int) {
         val intent = Intent.createChooser(
@@ -142,6 +148,8 @@ object Utils {
     fun datePicker(context: Context,view:Button){
 
     }
+
+
 
     fun getCurrentMonth(): String {
         val current = LocalDateTime.now()

@@ -7,6 +7,7 @@ object Constants {
     val CollectionAdminUser = "adminUser"
     val CollectionStudents = "student"
     val CollectionHomeWork = "Homework"
+    val CollectionResult = "result"
     val CollectionNotification = "Notifications"
     val RequestCodeHomeWork = 100
 

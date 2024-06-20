@@ -43,7 +43,7 @@ class ViewPagerOnlineAdapter(val context: Context, val imageList: List<String>) 
 
         // on below line we are setting
         // image resource for image view.
-        Picasso.get().load(imageList[position]).into(imageView)
+        Picasso.get().load(imageList[position]).placeholder(R.drawable.knowledge).into(imageView)
 //        Utils.showToast(context,imageList[position].toString())
         // on the below line we are adding this
         // item view to the container.

@@ -15,6 +15,7 @@ import com.example.mad_admin.models.ChatUser
 import com.example.mad_admin.models.Constants
 import com.example.mad_admin.models.HomeWork
 import com.example.mad_admin.models.Notification
+import com.example.mad_admin.models.Result
 import com.example.mad_admin.models.Student
 import com.example.mad_admin.models.Users
 import com.google.firebase.Firebase
@@ -179,12 +180,14 @@ class MainViewModel : ViewModel() {
 
     }
 
-    fun fetchUser(uid: String) {
+    fun fetchUser(uid: String):Flow<Users> = callbackFlow {
         FirebaseFirestore.getInstance().collection(Constants.CollectionAdminUser).document(uid).get().addOnSuccessListener {
             val user = it.toObject<Users>()
             _AdminName.value = user!!.name.toString()
+            trySend(user)
 
         }
+        awaitClose()
     }
 
     fun fetchStudent(uid: String) {
@@ -364,6 +367,54 @@ class MainViewModel : ViewModel() {
 
 
     }
+
+
+
+    fun fetchStudentResult(uid: String):Flow<ArrayList<Result>> = callbackFlow {
+        val db = Firebase.firestore.collection(Constants.CollectionResult).document(uid).collection(Constants.CollectionResult)
+
+
+        db.get()
+
+            .addOnSuccessListener { result ->
+                val dataList = ArrayList<Result>()
+                for (documents   in result) {
+                    val hw = documents.toObject<Result>()
+
+                    dataList.add(hw)
+
+                }
+
+                trySend(dataList)
+
+            }.addOnFailureListener { exception ->
+                // Handle data fetching failure
+                Log.w("Firestore", "Error fetching data", exception)
+            }
+        awaitClose()
+
+
+
+
+    }
+
+    fun uploadResult(context: Context, result: Result) {
+        Utils.hideProgressDialog()
+        Utils.showProgress(context,"Uploading Result...")
+        val firestore = FirebaseFirestore.getInstance()
+        val homeworkRef = firestore.collection(Constants.CollectionResult).document(result.auther!!).collection(Constants.CollectionResult).document(result.uid!!)// Replace with your collection name
+
+        homeworkRef.set(result).addOnSuccessListener{
+            Utils.hideProgressDialog()
+
+
+
+
+        }.addOnFailureListener{
+            Utils.showToast(context,it.toString())
+        }
+    }
+
 
 
 

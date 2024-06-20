@@ -33,6 +33,29 @@ class NotificationFragment : Fragment() {
         Utils.setListAdapter(requireContext(), Constants.sections, binding.tvNotiSection)
 
         binding.btnNotiPush.setOnClickListener{
+
+            if (binding.tvNotiTitle.text.toString().isEmpty()){
+                binding.tvNotiTitle.error = "Please Enter Title"
+                return@setOnClickListener
+            }
+
+            if (binding.tvNotiDesc.text.toString().isEmpty()){
+                binding.tvNotiDesc.error = "Please Enter Description"
+                return@setOnClickListener
+            }
+
+            if (binding.tvNotiClass.text.toString().isEmpty()){
+                binding.tvNotiClass.error = "Please Select Class"
+                return@setOnClickListener
+            }
+
+
+            if (binding.tvNotiSection.text.toString().isEmpty()){
+                binding.tvNotiSection.error = "Please Select Section"
+                return@setOnClickListener
+            }
+
+
             val notification = Notification(uid=UUID.randomUUID().toString(),
                 title = binding.tvNotiTitle.text.toString(),
                 body = binding.tvNotiDesc.text.toString(),

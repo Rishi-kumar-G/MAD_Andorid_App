@@ -2,10 +2,11 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/btn_addResult_uploadResult"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg"
-    tools:context=".Fragment.NotificationFragment">
+    tools:context=".AddResultFragment">
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -13,12 +14,14 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="800dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="800dp"
                 android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -38,13 +41,13 @@
                     app:hintTextColor="@color/grey_hint">
 
                     <AutoCompleteTextView
-                        android:id="@+id/tv_noti_Class"
+                        android:id="@+id/tv_addResult_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:completionThreshold="0"
 
-                        android:hint="Class"
+                        android:hint="Result Title"
                         android:padding="15dp"
                         android:singleLine="true"
                         android:textSize="20sp" />
@@ -65,13 +68,13 @@
                     app:hintTextColor="@color/grey_hint">
 
                     <AutoCompleteTextView
-                        android:id="@+id/tv_noti_section"
+                        android:id="@+id/tv_addResult_MarksObtained"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:completionThreshold="0"
 
-                        android:hint="Section"
+                        android:hint="Marks Obtained"
                         android:padding="15dp"
                         android:singleLine="true"
                         android:textSize="20sp" />
@@ -93,54 +96,26 @@
                     app:hintTextColor="@color/grey_hint">
 
                     <AutoCompleteTextView
-                        android:id="@+id/tv_noti_title"
+                        android:id="@+id/tv_addResult_TotalMarks"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:completionThreshold="0"
-                        android:hint="Title"
+                        android:hint="Total Marks "
                         android:padding="15dp"
                         android:textSize="20sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-
-                    android:textColorHint="@color/dark_blue"
-                    app:boxCornerRadiusBottomEnd="@dimen/cornorRadius"
-                    app:boxCornerRadiusBottomStart="@dimen/cornorRadius"
-                    app:boxCornerRadiusTopEnd="@dimen/cornorRadius"
-                    app:boxCornerRadiusTopStart="@dimen/cornorRadius"
-
-                    app:boxStrokeColor="@color/dark_blue"
-                    app:hintTextAppearance="@style/TextAppearance.AppCompat.Medium"
-                    app:hintTextColor="@color/grey_hint">
-
-                    <AutoCompleteTextView
-                        android:id="@+id/tv_noti_desc"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:completionThreshold="0"
-                        android:gravity="top"
-                        android:hint="Description"
-                        android:minHeight="100dp"
-                        android:padding="15dp"
-                        android:textSize="20sp" />
-                </com.google.android.material.textfield.TextInputLayout>
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_noti_push"
+                    android:id="@+id/btn_add_result"
                     style="@style/btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="30dp"
-                    android:text="Push Notification"
+                    android:text="Upload Result"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/linearLayout3"
@@ -152,4 +127,6 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
+
+
 </FrameLayout>

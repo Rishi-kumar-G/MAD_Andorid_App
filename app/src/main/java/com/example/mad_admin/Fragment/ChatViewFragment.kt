@@ -18,7 +18,9 @@ import com.example.mad_admin.models.ChatUser
 import com.example.mad_admin.models.Constants
 import com.example.mad_admin.models.HomeWork
 import com.example.mad_admin.viewmodel.MainViewModel
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.toObject
 import kotlinx.coroutines.launch
 import com.predator.mad_admin.models.Messege
@@ -92,7 +94,10 @@ class ChatViewFragment : Fragment() {
 
         binding.rvChat.adapter = adapter
 
-        FirebaseFirestore.getInstance().collection(Constants.CollectionMessege).document(recipient_uid+sender_uid).collection(Constants.CollectionMessege).get().addOnSuccessListener {
+        FirebaseFirestore.getInstance().collection(Constants.CollectionMessege)
+            .document(recipient_uid+sender_uid)
+            .collection(Constants.CollectionMessege)
+            .get().addOnSuccessListener {
             Utils.showToast(requireContext(),recipient_uid+sender_uid)
             Log.d("rishi",recipient_uid+" \n"+sender_uid)
 
@@ -110,7 +115,7 @@ class ChatViewFragment : Fragment() {
 
 
 
-
+        messege.timeStamp = Utils.generateUniqueTimeBasedId()
         viewModel.getFireStoreInstance().collection(Constants.CollectionMessege).document(recipient_uid+sender_uid).collection(Constants.CollectionMessege).document().set(messege).addOnSuccessListener{
             Utils.showToast(context,"Messege Sent")
             MessegesData.add(messege)

@@ -7,6 +7,15 @@
     android:layout_height="match_parent"
     android:background="@color/bg"
     tools:context=".Fragment.SettingsFragment">
+    <ImageView
+        android:id="@+id/img_setting_back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:rotation="180"
+        android:src="@drawable/baseline_navigate_next_24"
+        app:tint="@color/textcolor_dark"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout4"
@@ -17,7 +26,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/img_setting_back">
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -155,4 +164,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout4"
         app:layout_constraintStart_toStartOf="@+id/linearLayout4" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        style="@style/btn"
+        android:id="@+id/btn_uploadResult"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Upload Results"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout4"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout4"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
 </androidx.constraintlayout.widget.ConstraintLayout>
